@@ -11,7 +11,8 @@ lib_trm.path_mod = minetest.get_modpath(minetest.get_current_modname())
 lib_trm.path_world = minetest.get_worldpath()
 
 
-lib_trm.S or minetest.get_translator(lib_trm.name)
+lib_trm.intllib = minetest.get_translator(lib_trm.name)
+local S = lib_trm.intllib
 
 minetest.log(S("[MOD] lib_trm:  Loading..."))
 minetest.log(S("[MOD] lib_trm:  Legal Info: Copyright " .. lib_trm.copyright .. " " ..lib_trm.authorship))

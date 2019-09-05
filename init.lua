@@ -32,10 +32,11 @@ minetest.log(S("[MOD] lib_trm:  License: " .. lib_trm.license))
 	minetest.register_on_mods_loaded(function()
 		for _, node_name in pairs(minetest.registered_nodes) do
 			local node_def = minetest.registered_nodes[node_name]
+			local node_desc = node_def.description
 			if node_def.tool_capabilities then
 				minetest.override_item(node_name, {
-					original_description = "Diamond Pickaxe",
-					description = toolranks.create_description("Diamond Pickaxe", 0, 1),
+					original_description = node_desc,
+					description = toolranks.create_description(node_desc, 0, 1),
 					after_use = toolranks.new_afteruse
 				})
 			end

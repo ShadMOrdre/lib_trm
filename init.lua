@@ -23,11 +23,11 @@ minetest.log(S("[MOD] lib_trm:  License: " .. lib_trm.license))
 	dofile(lib_trm.path_mod.."/lib_trm_tool_ranks.lua")
 	
 	
-	minetest.register_on_mods_loaded)
-		if minetest.global_exists("default") and minetest.get_modpath("default") then
-			dofile(MP.."lib_trm_default_support.lua")
-		end
-	)	
+	--minetest.register_on_mods_loaded(
+	--	if minetest.global_exists("default") and minetest.get_modpath("default") then
+	--		dofile(MP.."lib_trm_default_support.lua")
+	--	end
+	--)	
 
 
 minetest.log(S("[MOD] lib_trm:  Successfully loaded."))

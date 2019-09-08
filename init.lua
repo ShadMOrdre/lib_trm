@@ -11,25 +11,38 @@ lib_trm.copyright = "2019"
 lib_trm.path_mod = minetest.get_modpath(minetest.get_current_modname())
 lib_trm.path_world = minetest.get_worldpath()
 
+lib_trm.intllib = minetest.setting_get("lib_trm_engine_translation") or false
 
-lib_trm.intllib = minetest.get_translator(lib_trm.name)
-local S = lib_trm.intllib
+local S
+local NS
+if not lib_trm.intllib then
+	if minetest.get_modpath("intllib") then
+		S = intllib.Getter()
+	else
+		-- S = function(s) return s end
+		-- internationalization boilerplate
+		S, NS = dofile(lib_trm.path_mod.."/intllib.lua")
+	end
+else
+	S = minetest.get_translator(lib_trm.name)
+end
 
---minetest.log(S("[MOD] lib_trm:  Loading..."))
---minetest.log(S("[MOD] lib_trm:  Legal Info: Copyright " .. lib_trm.copyright .. " " ..lib_trm.authorship .. ""))
---minetest.log(S("[MOD] lib_trm:  License: " .. lib_trm.license .. ""))
+minetest.log(S("[MOD] lib_trm:  Loading..."))
+minetest.log(S("[MOD] lib_trm:  Version:") .. S(lib_trm.ver_str))
+minetest.log(S("[MOD] lib_trm:  Legal Info: Copyright ") .. S(lib_trm.copyright) .. " " .. S(lib_trm.authorship) .. "")
+minetest.log(S("[MOD] lib_trm:  License: ") .. S(lib_trm.license) .. "")
 
+--minetest.log("[MOD] lib_trm:  Loading...")
+--minetest.log("[MOD] lib_trm:  Version:" .. lib_trm.ver_str)
+--minetest.log("[MOD] lib_trm:  Legal Info: Copyright " .. lib_trm.copyright .. " " ..lib_trm.authorship) .. "")
+--minetest.log("[MOD] lib_trm:  License: " .. lib_trm.license .. "")
 
-minetest.log("[MOD] lib_trm:  Loading...")
-minetest.log("[MOD] lib_trm:  Version:" .. lib_trm.ver_str)
-minetest.log("[MOD] lib_trm:  Legal Info: Copyright " .. lib_trm.copyright .. " " ..lib_trm.authorship .. "")
-minetest.log("[MOD] lib_trm:  License: " .. lib_trm.license .. "")
-
-
+	
 	dofile(lib_trm.path_mod.."/lib_trm_toolcap_modifier.lua")
 	dofile(lib_trm.path_mod.."/lib_trm_tool_ranks.lua")
 	
 	
+
 	minetest.register_on_mods_loaded(function()
 		for node_name, node_def in pairs(minetest.registered_tools) do
 			if node_name and node_name ~= "" then
@@ -49,8 +62,27 @@ minetest.log("[MOD] lib_trm:  License: " .. lib_trm.license .. "")
 
 
 
-
 minetest.log(S("[MOD] lib_trm:  Successfully loaded."))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

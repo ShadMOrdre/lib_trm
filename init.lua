@@ -39,8 +39,8 @@ minetest.log(S("[MOD] lib_trm:  License: ") .. S(lib_trm.license) .. "")
 
 	
 	dofile(lib_trm.path_mod.."/lib_trm_toolcap_modifier.lua")
-	dofile(lib_trm.path_mod.."/lib_trm_tool_ranks.lua")
 	
+	dofile(lib_trm.path_mod.."/lib_trm_tool_ranks.lua")
 	
 
 	minetest.register_on_mods_loaded(function()
@@ -50,8 +50,9 @@ minetest.log(S("[MOD] lib_trm:  License: ") .. S(lib_trm.license) .. "")
 					if not node_def.original_description then
 						local node_desc = node_def.description
 						minetest.override_item(node_name, {
-							original_description = node_desc,
+							--original_description = node_desc,
 							description = toolranks.create_description(node_desc, 0, 1),
+							--description = node_desc,
 							after_use = toolranks.new_afteruse,
 						})
 					end

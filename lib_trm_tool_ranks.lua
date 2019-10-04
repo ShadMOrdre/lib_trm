@@ -65,10 +65,10 @@ function toolranks.new_afteruse(itemstack, user, node, digparams)
 	local itemdef   = itemstack:get_definition() -- Item Definition
 	local itemdesc  = itemdef.original_description -- Original Description
 	local t_modname = itemmeta:get_string("tmod_name") or ""
-	local modname_color = ""
-	local modname_text = ""
+	--local modname_color = ""
+	--local modname_text = ""
 	local t_modstat = itemmeta:get_string("tmod_stat") or ""
-	local t_orgdesc = itemmeta:get_string("original_description") or ""
+	--local t_orgdesc = itemmeta:get_string("original_description") or ""
 	local t_name    = ""
 	local t_stat	= ""
 	local dugnodes  = tonumber(itemmeta:get_string("dug")) or 0 -- Number of nodes dug
@@ -76,7 +76,7 @@ function toolranks.new_afteruse(itemstack, user, node, digparams)
 
 
 	if t_modname ~= "" then
-		modname_color, modname_text = unpack(t_modname:split(",", true))
+		local modname_color, modname_text = unpack(t_modname:split(",", true))
 		
 		t_name    = minetest.get_color_escape_sequence(modname_color) .. modname_text .. toolranks.colors.green .. itemdesc
 	else

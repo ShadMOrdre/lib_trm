@@ -7,6 +7,7 @@ minetest.register_on_craft(function(itemstack, tool_capabilities, player,  old_c
 		local def_mdl = itemstack:get_tool_capabilities().max_drop_level
 		local def_gc = itemstack:get_tool_capabilities().groupcaps
 		local def_dg = itemstack:get_tool_capabilities().damage_groups
+		local default_atk = 0
 		local atk = itemstack:get_tool_capabilities().damage_groups.fleshy
 ------------------------------------------------------
 		if itemstack:get_definition().tool_capabilities.groupcaps.cracky ~= nil then
@@ -72,7 +73,13 @@ minetest.register_on_craft(function(itemstack, tool_capabilities, player,  old_c
 			local modifier = math.random (1,12)
 			local default_name = itemstack:get_definition().description
 			--local default_name = itemstack:get_definition().original_description
-		
+			
+			if def_dg.fleshy and atk ~= nil then
+				atk = def_dg.damage_groups.fleshy
+			else
+				atk = default_atk
+			end
+			
 			if modifier == 1 then
 				itm_mt:set_tool_capabilities({
 					full_punch_interval = def_fpi,

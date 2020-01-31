@@ -75,7 +75,11 @@ minetest.register_on_craft(function(itemstack, tool_capabilities, player,  old_c
 			--local default_name = itemstack:get_definition().original_description
 			
 			if def_dg.fleshy and atk ~= nil then
-				atk = def_dg.damage_groups.fleshy
+				if def_dg.damage_groups ~= nil then
+					if def_dg ~= nil then
+						atk = def_dg.damage_groups.fleshy
+					end
+				end
 			else
 				atk = default_atk
 			end
